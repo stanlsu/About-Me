@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>menu</title>
+    <link rel="stylesheet" href="/CSS/style.css">
+</head>
+<body>
+
+<div class="welcome-overlay">
+    <div class="welcome-content">
+        <h1>Welcome</h1>
+    </div>
+</div>
+<div class="background-container" id="plusContainer">
+    <!-- Plus signs will be added by JavaScript -->
+</div>
+
+<div class="container">
+    <!-- First folder -->
+    <button class="zoom-btn" onclick="startZoom(event, 'content1')">
+        <img src="/images/folderAboutMe.png" alt="aboutme">
+    </button>
+
+    <!-- Second folder -->
+    <button class="zoom-btn" onclick="startZoom(event, 'content2')">
+        <img src="/images/skills.png" alt="skills.png">
+    </button>
+
+    <!-- Third folder -->
+    <button class="zoom-btn" onclick="startZoom(event, 'content3')">
+        <img src="/images/contacts.png" alt="skills.png">
+    </button>
+
+    <!-- Content for first folder -->
+    <div class="zoom-content" id="content1">
+        <div class="grid-overlay">
+            <!-- Grid cells will be added by JavaScript -->
+        </div>
+        <img src="/images/smiley.jpg" alt="Profile" class="profile-image">
+        <h1>My story:</h1>
+       <p>
+           Started as a physical science major but discovered programming late in my college years, so i pivoted
+           to do CS now. I fell joyment and fun with programming so now I am a software engineer.
+       </p>
+
+        <h2>Facts about me:</h2>
+        <p>
+            I'm gonna be honest, I don't strive to be the best programmer in my area, I will just do the work on whatever
+        company told me what to do and I will do my very best to make sure to put in the work.
+        </p>
+        <p>
+            I'm just a simple person, will always try to be very straight forward and straight to the point. Same apply
+            to workplace, will go to work and go home. But don't mistaken that as I'm not friendly or anything I'm
+            good with people too.
+        </p>
+    </div>
+
+    <!-- Content for second folder -->
+    <div class="zoom-content" id="content2">
+        <div class="grid-overlay">
+            <!-- Grid cells will be added by JavaScript -->
+        </div>
+
+        <h1>Skills:</h1>
+        <ul class="skills">Programming Languages:
+            <li>C</li>
+            <li>C#</li>
+            <li>Python</li>
+            <li>Java</li>
+            <li>React</li>
+            <li>Native React</li>
+            <li>HTML</li>
+            <li>Next.js</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>TypeScript</li>
+        </ul>
+
+        <ul class="experience">Experience:
+            <ul title="School Projects">
+                <li>RPG fighting simulator</li>
+                <li>File sorter</li>
+                <li>Simple about me page</li>
+                <li>Website that uses databases</li>
+            </ul>
+            <ul title="Outside School Projects">
+                <li>Restaurant Website</li>
+                <li>Gatcha game app</li>
+                <li>This about me website</li>
+            </ul>
+        </ul>
+    </div>
+
+    <div class="zoom-content" id="content3">
+        <div class="grid-overlay">
+            <!-- Grid cells will be added by JavaScript -->
+        </div>
+
+        <ul> To contact me:
+            <li><a href="mailto:stan13@lsu.edu">Email: stan13@lsu.edu</a></li>
+            <li><a href="https://www.linkedin.com/in/steven-tan-99492431a/" target="_blank">LinkedIn: Steven Tan</a></li>
+
+        </ul>
+
+    </div>
+
+
+    <button class="reset-btn" onclick="resetZoom()">Return</button>
+</div>
+
+
+<script src="/JS/script.js"></script>
+</body>
+</html>

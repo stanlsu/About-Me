@@ -1,0 +1,472 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f0f0f0;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+.welcome-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeOutUp 2s ease-in-out forwards;
+    animation-delay: 2s; /* Stays for 2 seconds before animating out */
+}
+
+.welcome-content {
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.welcome-content h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 4em;
+    color: #333;
+    margin: 0;
+    opacity: 0;
+    animation: slideUp 1s ease-in-out forwards;
+}
+
+@keyframes fadeOutUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100%);
+        visibility: hidden;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 100px;
+}
+
+.zoom-btn {
+    background: none;  /* Removes button background */
+    border: none;      /* Removes border */
+    padding: 0;        /* Removes padding */
+    margin: 0;         /* Removes margin */
+    cursor: pointer;   /* Keeps the pointer cursor */
+    transition: all 0.5s ease-out;
+    transform: scale(1);
+    display: inline-block; /* Helps button size match content */
+    width: 150px;      /* Adjust this value to make image smaller */
+    height: 150px;
+    opacity: 0;
+    transform: translateY(50px);  /* Start from below */
+    animation: folderAppear 0.8s ease-out forwards;
+    animation-delay: 4s; /* This should match the welcome screen duration */
+}
+
+
+
+
+/* Add different delays for each folder to create a sequence */
+.zoom-btn:nth-child(1) {
+    animation-delay: 4s;  /* First folder */
+}
+
+.zoom-btn:nth-child(2) {
+    animation-delay: 4.2s;  /* Second folder */
+}
+
+.zoom-btn:nth-child(3) {
+    animation-delay: 4.4s;  /* Third folder (if you have one) */
+}
+
+/* Define the folder appearance animation */
+@keyframes folderAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Add animation for the folder labels if you have them */
+.folder-label {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: labelAppear 0.8s ease-out forwards;
+}
+
+.folder-label:nth-child(1) {
+    animation-delay: 4.1s;
+}
+
+.folder-label:nth-child(2) {
+    animation-delay: 4.3s;
+}
+
+.folder-label:nth-child(3) {
+    animation-delay: 4.5s;
+}
+
+@keyframes labelAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+.zoom-btn:focus {
+    outline: none;     /* Removes focus outline */
+}
+
+.zoom-btn img {
+    display: block;    /* Removes any extra space below image */
+    width: 100%;       /* Makes image fill button width */
+    height: auto;      /* Maintains image aspect ratio */
+    object-fit: contain;
+}
+
+.zoom-btn.hidden {
+    opacity: 0;
+    transform: scale(0.5);
+    pointer-events: none;
+}
+
+.zoom-btn:hover {
+    transform: scale(1.1);
+}
+
+.zoom-content {
+    position: absolute;
+    /* Change from 100vw/vh to specific sizes */
+    width: 50vw;          /* Takes 80% of viewport width */
+    height: 80vh;         /* Takes 80% of viewport height */
+    left: 50%;           /* Center horizontally */
+    top: 50%;            /* Center vertically */
+    transform: translate(-50%, -50%) scale(0) translateY(-50px); /* Add centering to transform */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform-origin: 0 0;
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    perspective: 1000px;
+    /* Add some style to make it look like a panel */
+    background-color: white;
+    border-radius: 15px;    /* Rounded corners */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Nice shadow */
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;  /* Space between elements */
+    color: #333;  /* Dark gray text */
+    font-family: 'Times New Roman', Times, serif;
+    overflow-y: auto;  /* Allows scrolling if content is too long */
+}
+
+/* Profile image placeholder */
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;  /* Rounded corners */
+    object-fit: cover;
+    margin: 0 auto 20px;  /* Centers image and adds bottom margin */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.zoom-content h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.zoom-content h2 {
+    font-size: 1.8em;
+    color: #34495e;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.zoom-content p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+/* Container for text content */
+.content-text {
+    max-width: 800px;
+    margin: 0 auto;  /* Centers the text container */
+}
+
+.zoom-content#content2 {
+    padding: 40px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: #333;
+    font-family: 'Times New Roman', Times, serif;
+    overflow-y: auto;
+}
+
+.zoom-content#content2 h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.zoom-content#content2 ul {
+    margin: 20px 0;
+    padding-left: 40px;
+    font-size: 1.2em;
+}
+
+.zoom-content#content2 > ul {  /* First level lists */
+    font-weight: bold;
+    font-size: 1.4em;
+    margin-bottom: 30px;
+}
+
+.zoom-content#content2 ul ul {  /* Nested lists */
+    font-weight: bold;
+    margin: 15px 0;
+    font-size: 0.9em;
+}
+
+.zoom-content#content2 li {
+    margin: 10px 0;
+    font-weight: normal;
+}
+
+/* Add some visual separation between sections */
+.zoom-content#content2 > ul:first-of-type {  /* Programming Languages section */
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 30px;
+}
+
+/* Style for the experience section headers */
+.zoom-content#content2 ul ul:before {  /* The category titles */
+    content: attr(title);
+    display: block;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+
+/* Update the active state transform */
+.zoom-content.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotateX(0deg);
+    pointer-events: all;
+}
+
+/* Update the zooming state */
+.zoom-content.zooming {
+    transform: translate(-50%, -50%) scale(0.1) translateY(-30px) rotateX(-45deg);
+}
+
+.reset-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    z-index: 20;
+}
+
+.reset-btn.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.zoom-text {
+    color: white;
+    font-size: 3em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 1s ease-out;
+}
+
+.zoom-content.active .zoom-text {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Grid overlay for zoom effect */
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template: repeat(10, 1fr) / repeat(10, 1fr);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.grid-cell {
+    border: 1px solid rgba(255,255,255,0.1);
+    transform-origin: center;
+    transition: all 0.5s;
+}
+
+.zoom-content.zooming .grid-overlay {
+    opacity: 1;
+}
+
+.zoom-content.zooming .grid-cell {
+    animation: gridZoom 2s forwards;
+}
+
+@keyframes gridZoom {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;    /* Full viewport width */
+    height: 100vh;   /* Full viewport height */
+    overflow: hidden;
+    z-index: -1;
+    background-color: white;  /* Match your background */
+}
+
+.plus-sign {
+    position: absolute;
+    font-size: 24px;
+    color: black;
+    animation: moveLeftToRight 15s linear infinite;
+    user-select: none;
+    /* Spread across entire width */
+    left: 0;
+    will-change: transform;  /* Performance optimization */
+}
+
+@keyframes moveLeftToRight {
+    0% {
+        transform: translateX(100vw);  /* Start from right edge */
+    }
+    100% {
+        transform: translateX(-50px);  /* Move past left edge */
+    }
+}
+
+.zoom-content#content3 {
+    padding: 40px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: #333;
+    font-family: 'Times New Roman', Times, serif;
+    overflow-y: auto;
+    align-items: center;  /* Center content horizontally */
+}
+
+.zoom-content#content3 ul {
+    list-style-type: none;  /* Remove default bullets */
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.zoom-content#content3 ul:first-child {
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-size: 2em;
+}
+
+.zoom-content#content3 li {
+    margin: 20px 0;
+    transition: all 0.3s ease;
+}
+
+.zoom-content#content3 li:hover {
+    transform: scale(1.05);
+}
+
+/* Style for email and LinkedIn links if you want to add them */
+.zoom-content#content3 a {
+    color: #2c3e50;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.zoom-content#content3 a:hover {
+    color: #3498db;
+}
