@@ -189,13 +189,13 @@ body {
     left: 50%;           /* Center horizontally */
     top: 50%;            /* Center vertically */
     transform: translate(-50%, -50%) scale(0) translateY(-50px); /* Add centering to transform */
+    transform-origin: 50% 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-size: cover;
     background-position: center;
     opacity: 0;
-    transform-origin: 0 0;
     transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
     perspective: 1000px;
@@ -257,6 +257,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    justify-content: flex-start;
+    align-items: stretch;
     color: #333;
     font-family: 'Times New Roman', Times, serif;
     overflow-y: auto;
@@ -276,37 +278,95 @@ body {
     font-size: 1.2em;
 }
 
-.zoom-content#content2 > ul {  /* First level lists */
-    font-weight: bold;
-    font-size: 1.4em;
-    margin-bottom: 30px;
-}
-
-.zoom-content#content2 ul ul {  /* Nested lists */
-    font-weight: bold;
-    margin: 15px 0;
-    font-size: 0.9em;
-}
-
-.zoom-content#content2 li {
-    margin: 10px 0;
-    font-weight: normal;
-}
-
-/* Add some visual separation between sections */
-.zoom-content#content2 > ul:first-of-type {  /* Programming Languages section */
-    border-bottom: 2px solid #e0e0e0;
-    padding-bottom: 30px;
-}
-
-/* Style for the experience section headers */
-.zoom-content#content2 ul ul:before {  /* The category titles */
-    content: attr(title);
-    display: block;
+.zoom-content#content2 h1 {
+    text-align: center;
     margin-bottom: 10px;
-    color: #2c3e50;
 }
 
+.resume-section {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.resume-section:first-of-type {
+    border-top: none;
+}
+
+.resume-section h2 {
+    margin: 0;
+    font-size: 1.3em;
+    color: #1f2d3d;
+    letter-spacing: 0.02em;
+}
+
+.resume-entry {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 6px 0 12px 0;
+    border-bottom: 1px solid #ededed;
+}
+
+.resume-entry:last-of-type {
+    border-bottom: none;
+}
+
+.resume-entry__header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-weight: 600;
+    color: #1f2d3d;
+}
+
+.resume-meta {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    font-size: 0.95em;
+    color: #4b5563;
+}
+
+.resume-bullets {
+    margin: 0;
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color: #3f4b5a;
+}
+
+.resume-bullets li {
+    line-height: 1.5;
+}
+
+.resume-tags {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.resume-tags li {
+    background: none;
+    color: #1f2d3d;
+    padding: 0;
+    border-radius: 0;
+    font-size: 0.95em;
+    border: none;
+}
+
+.two-column {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+}
 
 /* Update the active state transform */
 .zoom-content.active {

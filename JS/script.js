@@ -12,12 +12,10 @@ function startZoom(event, contentId) {
     const allZoomBtns = document.querySelectorAll('.zoom-btn');
     const allContents = document.querySelectorAll('.zoom-content');
 
-    // Get the button's position
+    // Set transform origin based on the clicked button's position so panels open from their icon.
     const rect = button.getBoundingClientRect();
-    const originX = (rect.left + rect.width / 2) / window.innerWidth * 100;
-    const originY = (rect.top + rect.height / 2) / window.innerHeight * 100;
-
-    // Set transform origin for this specific content
+    const originX = ((rect.left + rect.width / 2) / window.innerWidth) * 100;
+    const originY = ((rect.top + rect.height / 2) / window.innerHeight) * 100;
     content.style.transformOrigin = `${originX}% ${originY}%`;
 
     // Hide other contents if they're visible
@@ -63,35 +61,6 @@ function resetZoom() {
             btn.classList.remove('hidden');
         });
     }, 1000);
-}
-
-function createPlusSigns() {
-    const container = document.getElementById('plusContainer');
-    const numberOfPlus = 100;  // Increased number of plus signs
-
-    for (let i = 0; i < numberOfPlus; i++) {
-        const plus = document.createElement('div');
-        plus.className = 'plus-sign';
-        plus.textContent = '+';
-
-        // Distribute vertically across entire height
-        plus.style.top = `${Math.random() * 100}vh`;
-
-        // Random starting position horizontally
-        plus.style.transform = `translateX(${Math.random() * 100}vw)`;
-
-        // Random size between 12px and 24px
-        const size = 12 + Math.random() * 12;
-        plus.style.fontSize = `${size}px`;
-
-        // Random opacity between 0.1 and 0.3
-        plus.style.opacity = 0.1 + Math.random() * 0.2;
-
-        // Random animation delay for better distribution
-        plus.style.animationDelay = `${Math.random() * -15}s`;
-
-        container.appendChild(plus);
-    }
 }
 
 function createPlusSigns() {
